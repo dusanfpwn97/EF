@@ -32,13 +32,18 @@ private:
 	void createPipelineLayout();
 	void createPipeline();
 	void createCommandBuffers();
+	void freeCommandBuffers();
 	void drawFrame();
+	void recreateSwapchain();
+	void recordCommandBuffer(int imageIndex);
 	EfWindow efWindow{ WIDTH, HEIGHT, "Hello Vulkan!" };
 	EfDevice efDevice{ efWindow };
-	EfSwapChain efSwapChain{ efDevice, efWindow.getExtent() };
+	std::unique_ptr<EfSwapChain> efSwapChain;
 	std::unique_ptr<EfPipeline> efPipeline;
 	VkPipelineLayout pipelineLayout;
 	std::vector<VkCommandBuffer> commandBuffers;
 	std::unique_ptr<EfModel> efModel;
+
+	void sierpinski(std::vector<EfModel::Vertex>& vertices, int depth, glm::vec2 left, glm::vec2 right, glm::vec2 top);
 };
 }

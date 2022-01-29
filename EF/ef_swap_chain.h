@@ -8,6 +8,7 @@
 // std lib headers
 #include <string>
 #include <vector>
+#include <memory>
 
 namespace ef {
 
@@ -16,10 +17,12 @@ class EfSwapChain {
   static constexpr int MAX_FRAMES_IN_FLIGHT = 2;
 
   EfSwapChain(EfDevice &deviceRef, VkExtent2D windowExtent);
+  EfSwapChain(EfDevice& deviceRef, VkExtent2D windowExtent, std::shared_ptr<EfSwapChain> previous);
   ~EfSwapChain();
 
   EfSwapChain(const EfSwapChain &) = delete;
-  void operator=(const EfSwapChain &) = delete;
+  EfSwapChain& operator=(const EfSwapChain &) = delete;
+
 
   VkFramebuffer getFrameBuffer(int index) { return swapChainFramebuffers[index]; }
   VkRenderPass getRenderPass() { return renderPass; }
@@ -39,6 +42,7 @@ class EfSwapChain {
   VkResult submitCommandBuffers(const VkCommandBuffer *buffers, uint32_t *imageIndex);
 
  private:
+  void init();
   void createSwapChain();
   void createImageViews();
   void createDepthResources();
@@ -69,6 +73,7 @@ class EfSwapChain {
   VkExtent2D windowExtent;
 
   VkSwapchainKHR swapChain;
+  std::shared_ptr<EfSwapChain> oldSwapChain;
 
   std::vector<VkSemaphore> imageAvailableSemaphores;
   std::vector<VkSemaphore> renderFinishedSemaphores;

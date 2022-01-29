@@ -13,13 +13,26 @@ namespace ef {
 
 EfSwapChain::EfSwapChain(EfDevice &deviceRef, VkExtent2D extent)
     : device{deviceRef}, windowExtent{extent} {
-  createSwapChain();
-  createImageViews();
-  createRenderPass();
-  createDepthResources();
-  createFramebuffers();
-  createSyncObjects();
+    init();
 }
+
+EfSwapChain::EfSwapChain(EfDevice& deviceRef, VkExtent2D extent, std::shared_ptr<EfSwapChain> previous)
+    : device{ deviceRef }, windowExtent{ extent }, oldSwapChain{ previous }  {
+    init();
+
+    oldSwapChain = nullptr;
+}
+
+void EfSwapChain::init()
+{
+    createSwapChain();
+    createImageViews();
+    createRenderPass();
+    createDepthResources();
+    createFramebuffers();
+    createSyncObjects();
+}
+
 
 EfSwapChain::~EfSwapChain() {
   for (auto imageView : swapChainImageViews) {
@@ -119,6 +132,7 @@ VkResult EfSwapChain::submitCommandBuffers(
   return result;
 }
 
+
 void EfSwapChain::createSwapChain() {
   SwapChainSupportDetails swapChainSupport = device.getSwapChainSupport();
 
@@ -162,7 +176,7 @@ void EfSwapChain::createSwapChain() {
   createInfo.presentMode = presentMode;
   createInfo.clipped = VK_TRUE;
 
-  createInfo.oldSwapchain = VK_NULL_HANDLE;
+  createInfo.oldSwapchain = oldSwapChain == nullptr ? VK_NULL_HANDLE : oldSwapChain->swapChain;
 
   if (vkCreateSwapchainKHR(device.device(), &createInfo, nullptr, &swapChain) != VK_SUCCESS) {
     throw std::runtime_error("failed to create swap chain!");
@@ -362,7 +376,7 @@ void EfSwapChain::createSyncObjects() {
 VkSurfaceFormatKHR EfSwapChain::chooseSwapSurfaceFormat(
     const std::vector<VkSurfaceFormatKHR> &availableFormats) {
   for (const auto &availableFormat : availableFormats) {
-    if (availableFormat.format == VK_FORMAT_B8G8R8A8_UNORM &&
+    if (availableFormat.format == VK_FORMAT_B8G8R8A8_SRGB &&
         availableFormat.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR) {
       return availableFormat;
     }

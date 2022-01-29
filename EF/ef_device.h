@@ -35,7 +35,7 @@ class EfDevice {
 
   // Not copyable or movable
   EfDevice(const EfDevice &) = delete;
-  void operator=(const EfDevice &) = delete;
+  EfDevice &operator=(const EfDevice &) = delete;
   EfDevice(EfDevice &&) = delete;
   EfDevice &operator=(EfDevice &&) = delete;
 

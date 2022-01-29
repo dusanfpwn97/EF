@@ -24,8 +24,23 @@ void ef::EfWindow::createWindowSurface(VkInstance instance, VkSurfaceKHR* surfac
 void EfWindow::initWindow() {
 	glfwInit();
 	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-	glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+	glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 
 	window = glfwCreateWindow(width, height, windowName.c_str(), nullptr, nullptr);
+
+	glfwSetWindowUserPointer(window, this);
+	glfwSetFramebufferSizeCallback(window, framebufferResizeCallback);
 }
+
+
+void EfWindow::framebufferResizeCallback(GLFWwindow* window, int width, int height)
+{
+	auto efWindow = reinterpret_cast<EfWindow*>(glfwGetWindowUserPointer(window));
+	efWindow->framebufferResized = true;
+	efWindow->width = width;
+	efWindow->height = height;
+
+}
+
+
 }
