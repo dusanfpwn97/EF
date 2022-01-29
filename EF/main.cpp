@@ -6,7 +6,7 @@
 #include <stdexcept>
 
 int main() {
-    FirstApp app{};
+    ef::FirstApp app{};
 
     try {
         app.run();

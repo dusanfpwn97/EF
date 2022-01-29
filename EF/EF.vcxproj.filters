@@ -30,6 +30,12 @@
     <ClCompile Include="ef_device.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ef_swap_chain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ef_model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ef_window.h">
@@ -43,6 +49,12 @@
     </ClInclude>
     <ClInclude Include="ef_device.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ef_swap_chain.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ef_model.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

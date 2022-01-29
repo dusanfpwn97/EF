@@ -157,14 +157,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ef_device.cpp" />
+    <ClCompile Include="ef_model.cpp" />
     <ClCompile Include="ef_pipeline.cpp" />
+    <ClCompile Include="ef_swap_chain.cpp" />
     <ClCompile Include="ef_window.cpp" />
     <ClCompile Include="first_app.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ef_device.h" />
+    <ClInclude Include="ef_model.h" />
     <ClInclude Include="ef_pipeline.h" />
+    <ClInclude Include="ef_swap_chain.h" />
     <ClInclude Include="ef_window.h" />
     <ClInclude Include="first_app.h" />
   </ItemGroup>
