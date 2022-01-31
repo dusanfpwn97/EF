@@ -90,6 +90,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\VulkanSDK\1.2.198.1\Include;C:\Users\dusan\source\repos\EF\Libraries\glm;C:\Users\dusan\source\repos\EF\Libraries\glfw-3.3.6.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -108,6 +109,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\VulkanSDK\1.2.198.1\Include;C:\Users\dusan\source\repos\EF\Libraries\glm;C:\Users\dusan\source\repos\EF\Libraries\glfw-3.3.6.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,6 +129,7 @@
       <AdditionalIncludeDirectories>C:\VulkanSDK\1.2.198.1\Include;C:\Users\dusan\source\repos\EF\Libraries\glm;C:\Users\dusan\source\repos\EF\Libraries\glfw-3.3.6.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,6 +148,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\VulkanSDK\1.2.198.1\Include;C:\Users\dusan\source\repos\EF\Libraries\glm;C:\Users\dusan\source\repos\EF\Libraries\glfw-3.3.6.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -156,21 +160,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ef_device.cpp" />
-    <ClCompile Include="ef_model.cpp" />
-    <ClCompile Include="ef_pipeline.cpp" />
-    <ClCompile Include="ef_swap_chain.cpp" />
-    <ClCompile Include="ef_window.cpp" />
+    <ClCompile Include="device.cpp" />
+    <ClCompile Include="model.cpp" />
+    <ClCompile Include="pipeline.cpp" />
+    <ClCompile Include="swap_chain.cpp" />
+    <ClCompile Include="window.cpp" />
     <ClCompile Include="first_app.cpp" />
+    <ClCompile Include="game_object.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="renderer.cpp" />
+    <ClCompile Include="render_system.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ef_device.h" />
-    <ClInclude Include="ef_model.h" />
-    <ClInclude Include="ef_pipeline.h" />
-    <ClInclude Include="ef_swap_chain.h" />
-    <ClInclude Include="ef_window.h" />
-    <ClInclude Include="first_app.h" />
+    <ClInclude Include="device.hpp" />
+    <ClInclude Include="model.hpp" />
+    <ClInclude Include="pipeline.hpp" />
+    <ClInclude Include="swap_chain.hpp" />
+    <ClInclude Include="window.hpp" />
+    <ClInclude Include="first_app.hpp" />
+    <ClInclude Include="game_object.hpp" />
+    <ClInclude Include="renderer.hpp" />
+    <ClInclude Include="render_system.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

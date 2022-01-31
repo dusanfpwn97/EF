@@ -18,43 +18,61 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ef_window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="first_app.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ef_pipeline.cpp">
+    <ClCompile Include="game_object.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ef_device.cpp">
+    <ClCompile Include="renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ef_swap_chain.cpp">
+    <ClCompile Include="render_system.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ef_model.cpp">
+    <ClCompile Include="device.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pipeline.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="swap_chain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ef_window.h">
+    <ClInclude Include="render_system.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="first_app.h">
+    <ClInclude Include="game_object.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="ef_pipeline.h">
+    <ClInclude Include="renderer.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="ef_device.h">
+    <ClInclude Include="first_app.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="ef_swap_chain.h">
+    <ClInclude Include="device.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="ef_model.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="pipeline.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="swap_chain.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="window.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="model.hpp">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

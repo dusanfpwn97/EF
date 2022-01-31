@@ -1,4 +1,4 @@
-#include "first_app.h"
+#include "first_app.hpp"
 
 // std
 #include <cstdlib>
