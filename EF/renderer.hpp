@@ -13,13 +13,14 @@ namespace ef {
 	class Renderer {
 	public:
 
-		Renderer(EfWindow &window, Device &device);
+		Renderer(EfWindow& window, Device& device);
 		~Renderer();
 
 		Renderer(const Renderer&) = delete;
 		Renderer& operator=(const Renderer&) = delete;
 
 		VkRenderPass getSwapChainRenderPass() const { return efSwapChain->getRenderPass(); }
+		float getAspectRatio() const { return efSwapChain->extentAspectRatio(); }
 		bool isFrameInProgress() const { return isFrameStarted; }
 
 		VkCommandBuffer getCurrentCommandBuffer() const {

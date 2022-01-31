@@ -1,7 +1,7 @@
 #include "first_app.hpp"
 
 #include "render_system.hpp"
-
+#include "camera.hpp"
 // libs
 #define GLM_FORCE_RADIANS
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
@@ -23,13 +23,17 @@ namespace ef {
 
     void FirstApp::run() {
         RenderSystem simpleRenderSystem{ device, renderer.getSwapChainRenderPass() };
+        Camera camera{};
 
         while (!window.shouldClose()) {
             glfwPollEvents();
-            
+
+            float aspect = renderer.getAspectRatio();
+            //camera.setOrthographicProjection(-aspect, aspect, -1, 1, -1, 1);
+            camera.setPerspectiveProjection(glm::radians(50.f), aspect, 0.1f, 10.f);
             if (auto commandBuffer = renderer.beginFrame()) {
                 renderer.beginSwapChainRenderPass(commandBuffer);
-                simpleRenderSystem.renderGameObjects(commandBuffer, gameObjects);
+                simpleRenderSystem.renderGameObjects(commandBuffer, gameObjects, camera);
                 renderer.endSwapChainRenderPass(commandBuffer);
                 renderer.endFrame();
             }
@@ -37,7 +41,6 @@ namespace ef {
 
         vkDeviceWaitIdle(device.device());
     }
-
 
     std::unique_ptr<Model> createCubeModel(Device& device, glm::vec3 offset) {
         std::vector<Model::Vertex> vertices{
@@ -102,7 +105,7 @@ namespace ef {
 
         auto cube = GameObject::createGameObject();
         cube.model = model;
-        cube.transform.translation = { .0f, .0f, .5f };
+        cube.transform.translation = { .0f, .0f, 2.5f };
         cube.transform.scale = { 0.5f, 0.5f, 0.5f };
 
         gameObjects.push_back(std::move(cube));
