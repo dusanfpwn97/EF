@@ -34,4 +34,5 @@ namespace ef {
 
 		std::vector<GameObject> gameObjects;
 	};
+	std::unique_ptr<Model> createCubeModel(Device& device, glm::vec3 offset);
 }// namespace ef
