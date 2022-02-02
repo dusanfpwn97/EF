@@ -51,6 +51,9 @@
     <ClCompile Include="keyboard_movement_controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ef_vk_buffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="render_system.hpp">
@@ -87,6 +90,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="ef_utils.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ef_vk_buffer.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frame_info.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

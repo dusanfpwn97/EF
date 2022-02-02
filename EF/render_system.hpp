@@ -4,6 +4,8 @@
 #include "game_object.hpp"
 #include "pipeline.hpp"
 #include "camera.hpp"
+#include "frame_info.hpp"
+
 // std
 #include <memory>
 #include <vector>
@@ -17,7 +19,7 @@ namespace ef {
 		RenderSystem(const RenderSystem&) = delete;
 		RenderSystem& operator=(const RenderSystem&) = delete;
 
-		void renderGameObjects(VkCommandBuffer commandBuffer, std::vector<GameObject>& gameObjects, const Camera& camera);
+		void renderGameObjects(FrameInfo &frameInfo, std::vector<GameObject>& gameObjects);
 
 	private:
 		void createPipelineLayout();

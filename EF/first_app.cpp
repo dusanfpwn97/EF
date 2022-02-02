@@ -2,6 +2,7 @@
 #include "keyboard_movement_controller.hpp"
 #include "render_system.hpp"
 #include "camera.hpp"
+#include "ef_vk_buffer.hpp"
 // libs
 #define GLM_FORCE_RADIANS
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
@@ -16,6 +17,14 @@
 
 namespace ef {
 
+    struct GlobalUbo
+    {
+        glm::mat4 projectionView{ 1.f };
+        glm::vec3 lightDirection = glm::normalize(glm::vec3{ 1.0f, -3.f, 1.f });
+    };
+
+
+
     FirstApp::FirstApp() {
         loadGameObjects();
     }
@@ -23,6 +32,21 @@ namespace ef {
     FirstApp::~FirstApp() {}
 
     void FirstApp::run() {
+
+        std::vector<std::unique_ptr<EfVkBuffer>> uboBuffers(EfSwapChain::MAX_FRAMES_IN_FLIGHT);
+
+        for (int i = 0; i < uboBuffers.size(); i++)
+        {
+            uboBuffers[i] = std::make_unique<EfVkBuffer>(
+                device,
+                sizeof(GlobalUbo),
+                1,
+                VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT,
+                VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT);
+
+            uboBuffers[i]->map();
+        }
+
         RenderSystem simpleRenderSystem{ device, renderer.getSwapChainRenderPass() };
         Camera camera{};
 
@@ -53,8 +77,19 @@ namespace ef {
 
             camera.setPerspectiveProjection(glm::radians(50.f), aspect, 0.1f, 100.f);
             if (auto commandBuffer = renderer.beginFrame()) {
+
+                int frameIndex = renderer.getFrameIndex();
+                FrameInfo frameInfo{ frameIndex, frameTime, commandBuffer, camera };
+                // update
+                GlobalUbo ubo{};
+                ubo.projectionView = camera.getProjection() * camera.getView();
+                uboBuffers[frameIndex]->writeToBuffer(&ubo);
+                uboBuffers[frameIndex]->flush();
+
+
+                // render
                 renderer.beginSwapChainRenderPass(commandBuffer);
-                simpleRenderSystem.renderGameObjects(commandBuffer, gameObjects, camera);
+                simpleRenderSystem.renderGameObjects(frameInfo, gameObjects);
                 renderer.endSwapChainRenderPass(commandBuffer);
                 renderer.endFrame();
             }
@@ -64,14 +99,23 @@ namespace ef {
     }
 
     void FirstApp::loadGameObjects() {
-        std::shared_ptr<Model> model = Model::createModelFromFile(device, "C:/Users/dusan/source/repos/EF/EF/Models/smooth_vase.obj");
+        std::shared_ptr<Model> model = Model::createModelFromFile(device, "C:/Users/dusan/source/repos/EF/EF/Models/flat_vase.obj");
 
-        auto cube = GameObject::createGameObject();
-        cube.model = model;
-        cube.transform.translation = { .0f, .0f, 2.5f };
-        cube.transform.scale = glm::vec3{ 3.f };
+        auto flatVase = GameObject::createGameObject();
+        flatVase.model = model;
+        flatVase.transform.translation = { -.5f, .5f, 2.5f };
+        flatVase.transform.scale = glm::vec3{ 3.f, 1.5f, 3.f };
 
-        gameObjects.push_back(std::move(cube));
+        gameObjects.push_back(std::move(flatVase));
+
+        model = Model::createModelFromFile(device, "C:/Users/dusan/source/repos/EF/EF/Models/smooth_vase.obj");
+        auto smoothVase = GameObject::createGameObject();
+        smoothVase.model = model;
+        smoothVase.transform.translation = { .5f, .5f, 2.5f };
+        smoothVase.transform.scale = { 3.f, 1.5f, 3.f };
+
+
+        gameObjects.push_back(std::move(smoothVase));
     }
 
 

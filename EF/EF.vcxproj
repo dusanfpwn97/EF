@@ -162,6 +162,7 @@
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="device.cpp" />
+    <ClCompile Include="ef_vk_buffer.cpp" />
     <ClCompile Include="keyboard_movement_controller.cpp" />
     <ClCompile Include="model.cpp" />
     <ClCompile Include="pipeline.cpp" />
@@ -177,6 +178,8 @@
     <ClInclude Include="camera.hpp" />
     <ClInclude Include="device.hpp" />
     <ClInclude Include="ef_utils.hpp" />
+    <ClInclude Include="ef_vk_buffer.hpp" />
+    <ClInclude Include="frame_info.hpp" />
     <ClInclude Include="keyboard_movement_controller.hpp" />
     <ClInclude Include="model.hpp" />
     <ClInclude Include="pipeline.hpp" />

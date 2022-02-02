@@ -1,6 +1,7 @@
 #pragma once
 
 #include "device.hpp"
+#include "ef_vk_buffer.hpp"
 
 // libs
 #define GLM_FORCE_RADIANS
@@ -53,13 +54,13 @@ namespace ef {
 
         Device& device;
 
-        VkBuffer vertexBuffer;
-        VkDeviceMemory vertexBufferMemory;
+        //
+        std::unique_ptr<EfVkBuffer> vertexBuffer;
         uint32_t vertexCount;
 
+        //
         bool hasIndexBuffer = false;
-        VkBuffer indexBuffer;
-        VkDeviceMemory indexBufferMemory;
+        std::unique_ptr<EfVkBuffer> indexBuffer;
         uint32_t indexCount;
     };
 }  // namespace ef
