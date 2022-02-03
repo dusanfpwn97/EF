@@ -13,7 +13,7 @@
 namespace ef {
 	class RenderSystem {
 	public:
-		RenderSystem(Device& device, VkRenderPass renderPass);
+		RenderSystem(Device& device, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout);
 		~RenderSystem();
 
 		RenderSystem(const RenderSystem&) = delete;
@@ -22,7 +22,7 @@ namespace ef {
 		void renderGameObjects(FrameInfo &frameInfo, std::vector<GameObject>& gameObjects);
 
 	private:
-		void createPipelineLayout();
+		void createPipelineLayout(VkDescriptorSetLayout globalSetLayout);
 		void createPipeline(VkRenderPass renderPass);
 
 		Device& device;

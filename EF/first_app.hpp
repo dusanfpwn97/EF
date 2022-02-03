@@ -3,6 +3,8 @@
 #include "game_object.hpp"
 #include "renderer.hpp"
 #include "window.hpp"
+#include "descriptors.hpp"
+
 
 // std
 #include <memory>
@@ -32,6 +34,8 @@ namespace ef {
 		Device device{ window };
 		Renderer renderer{ window, device };
 
+		// Order of declarations matter!
+		std::unique_ptr<DescriptorPool> globalPool{};
 		std::vector<GameObject> gameObjects;
 	};
 	std::unique_ptr<Model> createCubeModel(Device& device, glm::vec3 offset);

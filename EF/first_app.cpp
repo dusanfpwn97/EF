@@ -3,6 +3,7 @@
 #include "render_system.hpp"
 #include "camera.hpp"
 #include "ef_vk_buffer.hpp"
+
 // libs
 #define GLM_FORCE_RADIANS
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
@@ -19,13 +20,18 @@ namespace ef {
 
     struct GlobalUbo
     {
-        glm::mat4 projectionView{ 1.f };
-        glm::vec3 lightDirection = glm::normalize(glm::vec3{ 1.0f, -3.f, 1.f });
+       alignas(16) glm::mat4 projectionView{ 1.f };
+       alignas(16) glm::vec3 lightDirection = glm::normalize(glm::vec3{ 1.0f, -3.f, 1.f });
     };
 
 
 
     FirstApp::FirstApp() {
+        globalPool = DescriptorPool::Builder(device)
+            .setMaxSets(EfSwapChain::MAX_FRAMES_IN_FLIGHT)
+            .addPoolSize(VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, EfSwapChain::MAX_FRAMES_IN_FLIGHT)
+            .build();
+
         loadGameObjects();
     }
 
@@ -47,7 +53,28 @@ namespace ef {
             uboBuffers[i]->map();
         }
 
-        RenderSystem simpleRenderSystem{ device, renderer.getSwapChainRenderPass() };
+
+        auto globalSetLayout = DescriptorSetLayout::Builder(device)
+            .addBinding(0, VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, VK_SHADER_STAGE_VERTEX_BIT)
+            .build();
+
+        std::vector<VkDescriptorSet> globalDescriptorSets(EfSwapChain::MAX_FRAMES_IN_FLIGHT);
+
+        for (int i = 0; i < globalDescriptorSets.size(); i++) {
+            auto bufferInfo = uboBuffers[i]->descriptorInfo();
+            DescriptorWriter(*globalSetLayout, *globalPool)
+                .writeBuffer(0, &bufferInfo)
+                .build(globalDescriptorSets[i]);
+        }
+
+
+
+        RenderSystem simpleRenderSystem{
+            device,
+            renderer.getSwapChainRenderPass(),
+            globalSetLayout->getDescriptorSetLayout() };
+
+
         Camera camera{};
 
 
@@ -79,7 +106,9 @@ namespace ef {
             if (auto commandBuffer = renderer.beginFrame()) {
 
                 int frameIndex = renderer.getFrameIndex();
-                FrameInfo frameInfo{ frameIndex, frameTime, commandBuffer, camera };
+                FrameInfo frameInfo{ frameIndex, frameTime, commandBuffer, camera, globalDescriptorSets[frameIndex] };
+               
+                
                 // update
                 GlobalUbo ubo{};
                 ubo.projectionView = camera.getProjection() * camera.getView();

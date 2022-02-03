@@ -11,5 +11,6 @@ namespace ef {
 		float frameTime;
 		VkCommandBuffer commandBuffer;
 		Camera& camera;
+		VkDescriptorSet globalDescriptorSet;
 	};
 }  // namespace ef
