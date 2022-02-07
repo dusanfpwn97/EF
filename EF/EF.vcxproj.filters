@@ -27,9 +27,6 @@
     <ClCompile Include="renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="render_system.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="device.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -57,11 +54,14 @@
     <ClCompile Include="descriptors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="systems\render_system.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="systems\point_light_system.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="render_system.hpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="game_object.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -103,6 +103,12 @@
     </ClInclude>
     <ClInclude Include="descriptors.hpp">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\render_system.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="systems\point_light_system.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

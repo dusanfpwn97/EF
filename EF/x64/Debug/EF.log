@@ -1,2 +1,5 @@
-﻿  render_system.cpp
+﻿  first_app.cpp
+  pipeline.cpp
+  point_light_system.cpp
+  render_system.cpp
   EF.vcxproj -> C:\Users\dusan\source\repos\EF\x64\Debug\EF.exe

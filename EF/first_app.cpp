@@ -1,6 +1,7 @@
 #include "first_app.hpp"
 #include "keyboard_movement_controller.hpp"
-#include "render_system.hpp"
+#include "systems/render_system.hpp"
+#include "systems/point_light_system.hpp"
 #include "camera.hpp"
 #include "ef_vk_buffer.hpp"
 
@@ -20,7 +21,8 @@ namespace ef {
 
     struct GlobalUbo
     {
-       glm::mat4 projectionView{ 1.f };
+       glm::mat4 projection{ 1.f };
+       glm::mat4 view{ 1.f };
        glm::vec4 ambientLightColor{ 1.f, 1.f, 1.f, .02f }; // w is intensity
        glm::vec3 lightPosition{ -1.0f };
        alignas(16) glm::vec4 lightColor{ 1.0f }; // w is intensity
@@ -76,6 +78,11 @@ namespace ef {
             renderer.getSwapChainRenderPass(),
             globalSetLayout->getDescriptorSetLayout() };
 
+        PointLightSystem pointLightSystem{
+            device,
+            renderer.getSwapChainRenderPass(),
+            globalSetLayout->getDescriptorSetLayout() };
+
 
         Camera camera{};
 
@@ -114,7 +121,8 @@ namespace ef {
                 
                 // update
                 GlobalUbo ubo{};
-                ubo.projectionView = camera.getProjection() * camera.getView();
+                ubo.projection = camera.getProjection();
+                ubo.view = camera.getView();
                 uboBuffers[frameIndex]->writeToBuffer(&ubo);
                 uboBuffers[frameIndex]->flush();
 
@@ -122,6 +130,7 @@ namespace ef {
                 // render
                 renderer.beginSwapChainRenderPass(commandBuffer);
                 simpleRenderSystem.renderGameObjects(frameInfo);
+                pointLightSystem.render(frameInfo);
                 renderer.endSwapChainRenderPass(commandBuffer);
                 renderer.endFrame();
             }
