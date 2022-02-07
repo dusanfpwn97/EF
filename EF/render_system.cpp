@@ -63,7 +63,7 @@ namespace ef {
             pipelineConfig);
     }
 
-    void RenderSystem::renderGameObjects(FrameInfo& frameInfo, std::vector<GameObject>& gameObjects)
+    void RenderSystem::renderGameObjects(FrameInfo& frameInfo)
     {
         
         pipeline->bind(frameInfo.commandBuffer);
@@ -77,7 +77,11 @@ namespace ef {
             0, nullptr
         );
 
-        for (auto& obj : gameObjects) {
+        for (auto& kv : frameInfo.gameObjects) {
+
+            auto& obj = kv.second;
+
+            if (obj.model == nullptr) continue; //TODO
 
             SimplePushConstantData push{};
 

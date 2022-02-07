@@ -97,7 +97,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\dusan\source\repos\EF\Libraries\glfw-3.3.6.bin.WIN64\lib-vc2019;C:\VulkanSDK\1.2.198.1\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -137,7 +137,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\dusan\source\repos\EF\Libraries\glfw-3.3.6.bin.WIN64\lib-vc2019;C:\VulkanSDK\1.2.198.1\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

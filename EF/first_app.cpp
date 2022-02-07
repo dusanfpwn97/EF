@@ -20,8 +20,10 @@ namespace ef {
 
     struct GlobalUbo
     {
-       alignas(16) glm::mat4 projectionView{ 1.f };
-       alignas(16) glm::vec3 lightDirection = glm::normalize(glm::vec3{ 1.0f, -3.f, 1.f });
+       glm::mat4 projectionView{ 1.f };
+       glm::vec4 ambientLightColor{ 1.f, 1.f, 1.f, .02f }; // w is intensity
+       glm::vec3 lightPosition{ -1.0f };
+       alignas(16) glm::vec4 lightColor{ 1.0f }; // w is intensity
     };
 
 
@@ -55,7 +57,7 @@ namespace ef {
 
 
         auto globalSetLayout = DescriptorSetLayout::Builder(device)
-            .addBinding(0, VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, VK_SHADER_STAGE_VERTEX_BIT)
+            .addBinding(0, VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, VK_SHADER_STAGE_ALL_GRAPHICS)
             .build();
 
         std::vector<VkDescriptorSet> globalDescriptorSets(EfSwapChain::MAX_FRAMES_IN_FLIGHT);
@@ -81,6 +83,7 @@ namespace ef {
         camera.setViewTarget(glm::vec3(-1.f, -2.f, 2.f), glm::vec3(0.0f, 0.f, 2.5f));
 
         auto viewerObject = GameObject::createGameObject();
+        viewerObject.transform.translation.z = -2.f;
         KeyboardMovementController cameraController{};
 
 
@@ -106,7 +109,7 @@ namespace ef {
             if (auto commandBuffer = renderer.beginFrame()) {
 
                 int frameIndex = renderer.getFrameIndex();
-                FrameInfo frameInfo{ frameIndex, frameTime, commandBuffer, camera, globalDescriptorSets[frameIndex] };
+                FrameInfo frameInfo{ frameIndex, frameTime, commandBuffer, camera, globalDescriptorSets[frameIndex], gameObjects };
                
                 
                 // update
@@ -118,7 +121,7 @@ namespace ef {
 
                 // render
                 renderer.beginSwapChainRenderPass(commandBuffer);
-                simpleRenderSystem.renderGameObjects(frameInfo, gameObjects);
+                simpleRenderSystem.renderGameObjects(frameInfo);
                 renderer.endSwapChainRenderPass(commandBuffer);
                 renderer.endFrame();
             }
@@ -132,19 +135,27 @@ namespace ef {
 
         auto flatVase = GameObject::createGameObject();
         flatVase.model = model;
-        flatVase.transform.translation = { -.5f, .5f, 2.5f };
+        flatVase.transform.translation = { -.5f, .5f, 0.f };
         flatVase.transform.scale = glm::vec3{ 3.f, 1.5f, 3.f };
 
-        gameObjects.push_back(std::move(flatVase));
+        gameObjects.emplace(flatVase.getId(), std::move(flatVase));
 
         model = Model::createModelFromFile(device, "C:/Users/dusan/source/repos/EF/EF/Models/smooth_vase.obj");
         auto smoothVase = GameObject::createGameObject();
         smoothVase.model = model;
-        smoothVase.transform.translation = { .5f, .5f, 2.5f };
+        smoothVase.transform.translation = { .5f, .5f, 0.f };
         smoothVase.transform.scale = { 3.f, 1.5f, 3.f };
 
+        gameObjects.emplace(smoothVase.getId(), std::move(smoothVase));
 
-        gameObjects.push_back(std::move(smoothVase));
+        model = Model::createModelFromFile(device, "C:/Users/dusan/source/repos/EF/EF/Models/quad.obj");
+        auto floor = GameObject::createGameObject();
+        floor.model = model;
+        floor.transform.translation = { 0.f, .5f, 0.f };
+        floor.transform.scale = { 3.f, 1.f, 3.f };
+
+
+        gameObjects.emplace(floor.getId(), std::move(floor));
     }
 
 

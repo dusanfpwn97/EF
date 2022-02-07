@@ -36,7 +36,7 @@ namespace ef {
 
 		// Order of declarations matter!
 		std::unique_ptr<DescriptorPool> globalPool{};
-		std::vector<GameObject> gameObjects;
+		GameObject::Map gameObjects;
 	};
-	std::unique_ptr<Model> createCubeModel(Device& device, glm::vec3 offset);
+	//std::unique_ptr<Model> createCubeModel(Device& device, glm::vec3 offset);
 }// namespace ef
