@@ -88,17 +88,20 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\dusan\source\repos\EF\Libraries\tinyobjloader;C:\VulkanSDK\1.2.198.1\Include;C:\Users\dusan\source\repos\EF\Libraries\glm;C:\Users\dusan\source\repos\EF\Libraries\glfw-3.3.6.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\dusan\source\repos\EF\Libraries\SDL2-2.0.20\include;C:\Users\dusan\source\repos\EF\Libraries\tinyobjloader;C:\VulkanSDK\1.2.198.1\Include;C:\Users\dusan\source\repos\EF\Libraries\glm;C:\Users\dusan\source\repos\EF\Libraries\glfw-3.3.6.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\dusan\source\repos\EF\Libraries\glfw-3.3.6.bin.WIN64\lib-vc2019;C:\VulkanSDK\1.2.198.1\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\dusan\source\repos\EF\Libraries\SDL2-2.0.20\lib\x64;C:\Users\dusan\source\repos\EF\Libraries\glfw-3.3.6.bin.WIN64\lib-vc2019;C:\VulkanSDK\1.2.198.1\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;vulkan-1.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)Libraries\SDL2-2.0.20\lib\x$(PlatformArchitecture)\SDL2.dll" "$(TargetDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -108,7 +111,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\dusan\source\repos\EF\Libraries\tinyobjloader;C:\VulkanSDK\1.2.198.1\Include;C:\Users\dusan\source\repos\EF\Libraries\glm;C:\Users\dusan\source\repos\EF\Libraries\glfw-3.3.6.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\dusan\source\repos\EF\Libraries\SDL2-2.0.20\include;C:\Users\dusan\source\repos\EF\Libraries\tinyobjloader;C:\VulkanSDK\1.2.198.1\Include;C:\Users\dusan\source\repos\EF\Libraries\glm;C:\Users\dusan\source\repos\EF\Libraries\glfw-3.3.6.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -117,9 +120,12 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\dusan\source\repos\EF\Libraries\glfw-3.3.6.bin.WIN64\lib-vc2019;C:\VulkanSDK\1.2.198.1\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\dusan\source\repos\EF\Libraries\SDL2-2.0.20\lib\x64;C:\Users\dusan\source\repos\EF\Libraries\glfw-3.3.6.bin.WIN64\lib-vc2019;C:\VulkanSDK\1.2.198.1\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;vulkan-1.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)Libraries\SDL2-2.0.20\lib\x$(PlatformArchitecture)\SDL2.dll" "$(TargetDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -127,7 +133,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\dusan\source\repos\EF\Libraries\tinyobjloader;C:\VulkanSDK\1.2.198.1\Include;C:\Users\dusan\source\repos\EF\Libraries\glm;C:\Users\dusan\source\repos\EF\Libraries\glfw-3.3.6.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\dusan\source\repos\EF\Libraries\SDL2-2.0.20\include;C:\Users\dusan\source\repos\EF\Libraries\tinyobjloader;C:\VulkanSDK\1.2.198.1\Include;C:\Users\dusan\source\repos\EF\Libraries\glm;C:\Users\dusan\source\repos\EF\Libraries\glfw-3.3.6.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -135,10 +141,13 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\dusan\source\repos\EF\Libraries\glfw-3.3.6.bin.WIN64\lib-vc2019;C:\VulkanSDK\1.2.198.1\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\dusan\source\repos\EF\Libraries\SDL2-2.0.20\lib\x64;C:\Users\dusan\source\repos\EF\Libraries\glfw-3.3.6.bin.WIN64\lib-vc2019;C:\VulkanSDK\1.2.198.1\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;vulkan-1.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)Libraries\SDL2-2.0.20\lib\x$(PlatformArchitecture)\SDL2.dll" "$(TargetDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -148,7 +157,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\dusan\source\repos\EF\Libraries\tinyobjloader;C:\VulkanSDK\1.2.198.1\Include;C:\Users\dusan\source\repos\EF\Libraries\glm;C:\Users\dusan\source\repos\EF\Libraries\glfw-3.3.6.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\dusan\source\repos\EF\Libraries\SDL2-2.0.20\include;C:\Users\dusan\source\repos\EF\Libraries\tinyobjloader;C:\VulkanSDK\1.2.198.1\Include;C:\Users\dusan\source\repos\EF\Libraries\glm;C:\Users\dusan\source\repos\EF\Libraries\glfw-3.3.6.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -157,9 +166,12 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\dusan\source\repos\EF\Libraries\glfw-3.3.6.bin.WIN64\lib-vc2019;C:\VulkanSDK\1.2.198.1\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\dusan\source\repos\EF\Libraries\SDL2-2.0.20\lib\x64;C:\Users\dusan\source\repos\EF\Libraries\glfw-3.3.6.bin.WIN64\lib-vc2019;C:\VulkanSDK\1.2.198.1\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;vulkan-1.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)Libraries\SDL2-2.0.20\lib\x$(PlatformArchitecture)\SDL2.dll" "$(TargetDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp" />

@@ -2,24 +2,25 @@
 
 #include "game_object.hpp"
 #include "window.hpp"
+#include "SDL_keyboard.h"
 
 namespace ef {
     class KeyboardMovementController {
     public:
         struct KeyMappings {
-            int moveLeft = GLFW_KEY_A;
-            int moveRight = GLFW_KEY_D;
-            int moveForward = GLFW_KEY_W;
-            int moveBackward = GLFW_KEY_S;
-            int moveUp = GLFW_KEY_E;
-            int moveDown = GLFW_KEY_Q;
-            int lookLeft = GLFW_KEY_LEFT;
-            int lookRight = GLFW_KEY_RIGHT;
-            int lookUp = GLFW_KEY_UP;
-            int lookDown = GLFW_KEY_DOWN;
+            int moveLeft = SDLK_a;
+            int moveRight = SDLK_d;
+            int moveForward = SDLK_w;
+            int moveBackward = SDLK_s;
+            int moveUp = SDLK_e;
+            int moveDown = SDLK_q;
+            int lookLeft = SDLK_LEFT;
+            int lookRight = SDLK_RIGHT;
+            int lookUp = SDLK_UP;
+            int lookDown = SDLK_DOWN;
         };
 
-        void moveInPlaneXZ(GLFWwindow* window, float dt, GameObject& gameObject);
+        void moveInPlaneXZ(const SDL_Event& sdlEvent, float dt, GameObject& gameObject);
 
         KeyMappings keys{};
         float moveSpeed{ 3.f };

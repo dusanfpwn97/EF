@@ -261,17 +261,23 @@ bool Device::checkValidationLayerSupport() {
 }
 
 std::vector<const char *> Device::getRequiredExtensions() {
-  uint32_t glfwExtensionCount = 0;
-  const char **glfwExtensions;
-  glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
 
-  std::vector<const char *> extensions(glfwExtensions, glfwExtensions + glfwExtensionCount);
+    
+  uint32_t sdlExtensionCount = 0;
+  SDL_Vulkan_GetInstanceExtensions(window.getSDLwindow(), &sdlExtensionCount, nullptr);
 
-  if (enableValidationLayers) {
-    extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
+  std::vector<const char*> extensionNames(sdlExtensionCount);
+
+  if (SDL_Vulkan_GetInstanceExtensions(window.getSDLwindow(), &sdlExtensionCount, extensionNames.data()) == SDL_FALSE)
+  {
+      return std::vector<const char*>();
   }
 
-  return extensions;
+  if (enableValidationLayers) {
+      extensionNames.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
+  }
+
+  return extensionNames;
 }
 
 void Device::hasGflwRequiredInstanceExtensions() {
@@ -292,7 +298,7 @@ void Device::hasGflwRequiredInstanceExtensions() {
   for (const auto &required : requiredExtensions) {
     //std::cout << "\t" << required << std::endl;
     if (available.find(required) == available.end()) {
-      throw std::runtime_error("Missing required glfw extension");
+      throw std::runtime_error("Missing required sdl extension");
     }
   }
 }

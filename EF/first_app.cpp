@@ -88,19 +88,22 @@ namespace ef {
 
         auto currentTime = std::chrono::high_resolution_clock::now();
 
-
         while (!window.shouldClose()) {
-            glfwPollEvents();
+            SDL_Event event;
+            
 
             auto newTime = std::chrono::high_resolution_clock::now();
-
 
             float frameTime = std::chrono::duration<float, std::chrono::seconds::period>(newTime - currentTime).count();
 
             frameTime = glm::min(frameTime, 1.f); //max frame time (like 0.4 in unreal)
             currentTime = newTime;
 
-            cameraController.moveInPlaneXZ(window.getGLFWwindow(), frameTime, viewerObject);
+
+            while (SDL_PollEvent(&event)) {  // poll until all events are handled!
+                cameraController.moveInPlaneXZ(event, frameTime, viewerObject);
+            }
+            
             camera.setViewYXZ(viewerObject.transform.translation, viewerObject.transform.rotation);
             float aspect = renderer.getAspectRatio();
 

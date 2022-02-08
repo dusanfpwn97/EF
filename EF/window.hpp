@@ -1,9 +1,11 @@
 #pragma once
 
-#define GLFW_INCLUDE_VULKAN
-#include <GLFW/glfw3.h>
-#include <stdexcept>
+
 #include <string>
+#include <SDL.h>
+#include <SDL_vulkan.h>
+#include <vulkan/vulkan.h>
+#undef main
 
 namespace ef {
 class EfWindow {
@@ -14,17 +16,17 @@ public:
 	EfWindow(const EfWindow&) = delete;
 	EfWindow& operator=(const EfWindow&) = delete;
 
-	bool shouldClose() { return glfwWindowShouldClose(window); }
+	bool shouldClose();
 	bool wasWindowResized() { return framebufferResized; }
 	void resetWindowResizedFlag() { framebufferResized = false; }
 
-	GLFWwindow* getGLFWwindow() const { return window; }
+	SDL_Window* getSDLwindow() const { return window; }
 	VkExtent2D getExtent() { return { static_cast<uint32_t>(width), static_cast<uint32_t>(height)}; }
 
 	void createWindowSurface(VkInstance instance, VkSurfaceKHR* surface);
 private:
 
-	static void framebufferResizeCallback(GLFWwindow* window, int width, int height);
+	static void framebufferResizeCallback(SDL_Window* sdlWindow, int width, int height);
 	void initWindow();
 
 	int width;
@@ -33,6 +35,6 @@ private:
 	bool framebufferResized = false;
 
 	std::string windowName;
-	GLFWwindow* window;
+	SDL_Window* window;
 };
 }
