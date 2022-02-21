@@ -1,0 +1,3 @@
+C:/Users/dusan/source/repos/EF/out/build/x64-Debug/CMakeFiles/EF.dir
+C:/Users/dusan/source/repos/EF/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+C:/Users/dusan/source/repos/EF/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
