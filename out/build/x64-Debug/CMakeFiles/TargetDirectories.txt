@@ -1,3 +1,6 @@
-C:/Users/dusan/source/repos/EF/out/build/x64-Debug/CMakeFiles/EF.dir
-C:/Users/dusan/source/repos/EF/out/build/x64-Debug/CMakeFiles/edit_cache.dir
-C:/Users/dusan/source/repos/EF/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/dusan/source/repos/Mag/Mag/libs/EF/out/build/x64-Debug/CMakeFiles/ef.dir
+C:/Users/dusan/source/repos/Mag/Mag/libs/EF/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+C:/Users/dusan/source/repos/Mag/Mag/libs/EF/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/dusan/source/repos/Mag/Mag/libs/EF/out/build/x64-Debug/libs/glad/CMakeFiles/glad.dir
+C:/Users/dusan/source/repos/Mag/Mag/libs/EF/out/build/x64-Debug/libs/glad/CMakeFiles/edit_cache.dir
+C:/Users/dusan/source/repos/Mag/Mag/libs/EF/out/build/x64-Debug/libs/glad/CMakeFiles/rebuild_cache.dir

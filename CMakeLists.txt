@@ -1,5 +1,5 @@
 ﻿cmake_minimum_required (VERSION 3.8)
-project ("EF")
+project ("ef")
 
 set(SDL_DIR ${CMAKE_CURRENT_LIST_DIR}/libs/SDL)
 set(SDL_INCLUDE_DIR ${SDL_DIR}/include)
@@ -10,13 +10,30 @@ set(GLAD_INCLUDE_DIR ${GLAD_DIR}/include)
 
 file(GLOB_RECURSE SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp ${PROJECT_SOURCE_DIR}/src/*.c)
 
-add_executable(${PROJECT_NAME} ${SOURCES})
 
-#set_property(TARGET ${PROJECT_NAME} PROPERTY VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/out/build")
+add_library(ef SHARED ${CMAKE_CURRENT_LIST_DIR}/src/application.cpp ${CMAKE_CURRENT_LIST_DIR}/src/application.h)
 
-	#find_package(OpenGL REQUIRED)
 
-	target_include_directories(${PROJECT_NAME} PUBLIC ${SDL_INCLUDE_DIR} ${GLAD_INCLUDE_DIR})
-	target_link_directories(${PROJECT_NAME} PUBLIC ${SDL_LIB_DIR})
-	target_link_libraries(${PROJECT_NAME} SDL2d SDL2maind)
+#add_executable(ef ${SOURCES})
 
+
+
+
+add_compile_definitions(EF_PLATFORM_WINDOWS EF_BUILD_DLL)
+
+add_subdirectory(${GLAD_DIR})
+target_include_directories(${PROJECT_NAME} PUBLIC 
+${SDL_INCLUDE_DIR}
+${GLAD_INCLUDE_DIR}
+${CMAKE_CURRENT_LIST_DIR}/src
+)
+target_link_directories(${PROJECT_NAME} PUBLIC 
+${SDL_LIB_DIR}
+)
+target_link_libraries(${PROJECT_NAME} SDL2d SDL2maind glad)
+
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${SDL_LIB_DIR}/SDL2d.dll ${CMAKE_CURRENT_LIST_DIR}/out/build/x64-Debug/
+	COMMENT "Copying dlls..."
+)
