@@ -54,7 +54,7 @@ int main(int argc, char* argv[]) {
         SDL_Event event;
         // Start our event loop
         while (SDL_PollEvent(&event)) {
-            // Handle each specific event
+            // Handle each specifsic event
             if (event.type == SDL_QUIT) {
                 gameIsRunning = false;
             }
