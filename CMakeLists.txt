@@ -3,7 +3,7 @@ project ("ef")
 
 set(SDL_DIR ${CMAKE_CURRENT_LIST_DIR}/libs/SDL)
 set(SDL_INCLUDE_DIR ${SDL_DIR}/include)
-set(SDL_LIB_DIR ${SDL_DIR}/lib/x64/Debug)
+set(SDL_LIB_DIR ${SDL_DIR}/lib/Debug)
 
 set(GLAD_DIR ${CMAKE_CURRENT_LIST_DIR}/libs/glad)
 set(GLAD_INCLUDE_DIR ${GLAD_DIR}/include)
