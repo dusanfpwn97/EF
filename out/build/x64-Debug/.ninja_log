@@ -1,6 +1,0 @@
-# ninja log v5
-3	58	6674450986952414	libs/glad/CMakeFiles/glad.dir/src/glad.c.obj	b4204d4949d1e9ca
-59	82	6674450987192627	libs/glad/glad.lib	bda728bf5e5e954a
-1	361	6674450989975164	CMakeFiles/ef.dir/src/application.cpp.obj	7bdef2ba86ed064f
-361	558	6674450991636342	ef.dll	cb25ff498b2bcf72
-361	558	6674450991636342	ef.lib	cb25ff498b2bcf72
