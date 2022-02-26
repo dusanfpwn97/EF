@@ -29,7 +29,7 @@ namespace ef
             std::cout << "SDL could not be initialized: " <<
                 SDL_GetError();
         }
-        else { std::cout << "116\n"; }
+        else { std::cout << "12163\n"; }
 
         // Before we create our window, specify OpenGL version
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);

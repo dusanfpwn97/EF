@@ -16,6 +16,8 @@ file(GLOB_RECURSE INCLUDE_DIRS
     ${SDL_DIR}/include
     ${GLAD_DIR}/include
 )
+# put generated files into the same directory as exe
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 add_library(ef SHARED ${SOURCES} )
 # DEFINITIONS
