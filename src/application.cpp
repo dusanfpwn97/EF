@@ -4,8 +4,7 @@
 
 #include <SDL.h>
 
-#include <glad/glad.h>
-
+#include "glad/glad.h"
 
 namespace ef
 {
@@ -31,7 +30,7 @@ namespace ef
             std::cout << "SDL could not be initialized: " <<
                 SDL_GetError();
         }
-        else { std::cout << "111333111\n"; }
+        else { std::cout << "116\n"; }
 
         // Before we create our window, specify OpenGL version
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
