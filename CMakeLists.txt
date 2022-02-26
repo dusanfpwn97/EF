@@ -11,7 +11,9 @@ set(GLAD_INCLUDE_DIR ${GLAD_DIR}/include)
 file(GLOB_RECURSE SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp ${PROJECT_SOURCE_DIR}/src/*.c)
 
 add_library(ef SHARED ${SOURCES})
-
+#set_target_properties(ef PROPERTIES
+#  SOURCE_DIR "${CMAKE_CURRENT_LIST_DIR}/src"
+#)
 add_compile_definitions(EF_PLATFORM_WINDOWS EF_BUILD_DLL)
 #target_compile_definitions(ef PUBLIC EF_BUILD_DLL=0)
 
@@ -20,7 +22,7 @@ add_subdirectory(${GLAD_DIR})
 target_include_directories(${PROJECT_NAME} PUBLIC 
 	${SDL_INCLUDE_DIR}
 	${GLAD_INCLUDE_DIR}
-	${CMAKE_CURRENT_LIST_DIR}/src
+	#${CMAKE_CURRENT_LIST_DIR}/src
 )
 target_link_directories(${PROJECT_NAME} PUBLIC 
 	${SDL_LIB_DIR}
