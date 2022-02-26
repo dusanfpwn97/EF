@@ -3,7 +3,6 @@
 #include <iostream>
 
 #include <SDL.h>
-
 #include "glad/glad.h"
 
 namespace ef
