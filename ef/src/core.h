@@ -6,10 +6,12 @@
 	#else
 		#define EF_API __declspec(dllimport)
 	#endif
+#endif
+/*
 #else
 	#ifdef EF_BUILD_DLL
 		#define EF_API __declspec(JNIEXPORT)
 	#else
 		#define EF_API __declspec(JNIEXPORT)
 	#endif
-#endif
+#endif*/
