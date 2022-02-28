@@ -1,10 +1,19 @@
 cmake_minimum_required(VERSION 3.18.1)
 project("ef")
 
+set(EF_SOURCE_DIR ../../../../../../src)
+
+file(GLOB_RECURSE SOURCES
+	${PROJECT_SOURCE_DIR}/*.cpp
+	${PROJECT_SOURCE_DIR}/*.c
+		)
+
+
 add_library(
         ef
         SHARED
-        native-lib.cpp)
+        native-lib.cpp
+		${SOURCES})
 
 find_library(
         log-lib
