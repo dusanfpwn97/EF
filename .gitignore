@@ -405,3 +405,8 @@ out
 #!SDL2.lib
 #!SDL2main.lib
 #!SDL2test.lib
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
