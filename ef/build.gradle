@@ -37,11 +37,20 @@ android {
     externalNativeBuild {
         cmake {
            path file('android/CMakeLists.txt')
-           version '3.8'
+           version '3.23.0'
         }
     }
     buildFeatures {
         viewBinding true
+    }
+	
+    sourceSets {
+    	main {
+    		manifest.srcFile 'android/src/main/AndroidManifest.xml'
+    		java.srcDirs = ['android/src/main/java']
+    		res.srcDirs = ['android/src/main/res']
+
+    	}
     }
 }
 
