@@ -1,0 +1,3 @@
+[submodule "ef/libs/efSDL"]
+	path = ef/libs/efSDL
+	url = https://github.com/dusanfpwn97/SDL.git
