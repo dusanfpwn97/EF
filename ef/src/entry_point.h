@@ -23,7 +23,7 @@ int main(int argc, char** argv)
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_eferus_ef_MainActivity_stringFromJNI2(
         JNIEnv* env,
-        jobject /* this */) {
+        jobject this ) {
     std::string hello = "Hello 2 C++";
     return env->NewStringUTF(hello.c_str());
 }*/

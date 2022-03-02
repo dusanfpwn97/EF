@@ -1,9 +1,16 @@
 ﻿cmake_minimum_required (VERSION 3.8)
 project ("ef")
-
+# DEFINITIONS
+add_compile_definitions(EF_PLATFORM_WINDOWS EF_BUILD_DLL)
+set(EF_PLATFORM_WINDOWS 1)
 # SDL
-set(SDL_DIR ${CMAKE_CURRENT_LIST_DIR}/libs/SDL/SDL2-2.0.20)
-set(SDL_LIB_DIR ${SDL_DIR}/lib/x64)
+set(SDL_DIR ${CMAKE_CURRENT_LIST_DIR}/libs/SDL)
+
+if(EF_PLATFORM_WINDOWS)
+	set(SDL_LIB_DIR ${SDL_DIR}/lib/windows)
+else()
+	set(SDL_LIB_DIR ${SDL_DIR}/lib/android/arm64-v8a)
+endif()
 # GLAD
 set(GLAD_DIR ${CMAKE_CURRENT_LIST_DIR}/libs/glad)
 # VARS
@@ -20,14 +27,13 @@ file(GLOB_RECURSE INCLUDE_DIRS
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 add_library(ef SHARED ${SOURCES} )
-# DEFINITIONS
-add_compile_definitions(EF_PLATFORM_WINDOWS EF_BUILD_DLL)
 
 target_include_directories(${PROJECT_NAME} PUBLIC 
 	#${INCLUDE_DIRS}
 	${SDL_DIR}/include
     ${GLAD_DIR}/include
 )
+
 target_link_directories(${PROJECT_NAME} PUBLIC 
 	${SDL_LIB_DIR}
 )
