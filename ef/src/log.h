@@ -1,7 +1,6 @@
 #pragma once
 #include "core.h"
 #include <string>
-#include <any>
 
 namespace ef
 {
@@ -23,13 +22,14 @@ namespace ef
 		template <class T>
 		static void printLog(T t)
 		{
-			std::cout << t;
+			//std::cout << t;
 		}
 
 		template <class T, class... Args>
 		static void printLog(T t, Args... args)
 		{
-			std::cout << t << std::endl;
+			//std::cout << t << std::endl;
+
 			print(args...);
 		}
 

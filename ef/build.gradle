@@ -12,7 +12,7 @@ android {
         targetSdk 31
         versionCode 1
         versionName "1.0"
-        ndkPath "C:/Users/dusan/AppData/Local/Android/Sdk/ndk/21.4.7075529"
+        //ndkPath "C:/Users/dusan/AppData/Local/Android/Sdk/ndk/21.4.7075529"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
@@ -36,7 +36,7 @@ android {
     }
     externalNativeBuild {
         cmake {
-           path file('android/CMakeLists.txt')
+           path file('CMakeLists.txt')
            version '3.18.1'
         }
     }
@@ -44,15 +44,15 @@ android {
         viewBinding true
     }
 
-    sourceSets {
-    	main {
-    		manifest.srcFile 'android/src/main/AndroidManifest.xml'
-    		java.srcDirs = ['android/src/main/java']
-    		res.srcDirs = ['android/src/main/res']
+   //sourceSets {
+   //	main {
+   //		//manifest.srcFile 'android/src/main/AndroidManifest.xml'
+   //		//java.srcDirs = ['android/src/main/java']
+   //		//res.srcDirs = ['android/src/main/res']
 
 
-    	}
-    }
+   //	}
+   //}
 }
 
 dependencies {

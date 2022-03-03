@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         // Used to load the 'ef' library on application startup.
         init {
+            System.loadLibrary("SDL2")
             System.loadLibrary("ef")
         }
     }

@@ -3,7 +3,8 @@
 #include <iostream>
 
 #include <SDL.h>
-#include "glad/glad.h"
+
+//#include "glad/glad.h"
 
 namespace ef
 {
@@ -19,8 +20,10 @@ namespace ef
 
 	void Application::run()
 	{
+/*
 		SDL_Window* window;
 		SDL_Init(SDL_INIT_VIDEO);
+
 		window = SDL_CreateWindow(
 			"An SDL2 window",                  // window title
 			SDL_WINDOWPOS_UNDEFINED,           // initial x position
@@ -34,14 +37,15 @@ namespace ef
 		// Check that the window was successfully created
 		if (window == NULL) {
 			// In the case that the window could not be made...
-			printf("Could not create window: %s\n", SDL_GetError());
+			//printf("Could not create window: %s\n", SDL_GetError());
+            printf("Could not create window");
 			return;
 		}
-
-		while (1)
-		{
-
-		}
+*/
+		//while (1)
+		//{
+//
+		//}
 	}
 	void Application::print()
 	{

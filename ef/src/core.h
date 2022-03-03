@@ -8,4 +8,4 @@
 	#endif
 #endif
 
-//#define EF_API __attribute__((visibility("default")))
+#define EF_API __attribute__((visibility("default")))
