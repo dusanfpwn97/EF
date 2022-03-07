@@ -2,17 +2,17 @@
 project ("ef")
 # DEFINITIONS
 add_compile_definitions(EF_PLATFORM_WINDOWS EF_BUILD_DLL)
-set(EF_PLATFORM_WINDOWS 0)
+set(EF_PLATFORM_WINDOWS 1)
 # SDL
-set(SDL_DIR ${CMAKE_CURRENT_LIST_DIR}/libs/efSDL)
+set(SFML_DIR ${CMAKE_CURRENT_LIST_DIR}/libs/efSFML)
 
-#if(EF_PLATFORM_WINDOWS)
-#	set(SDL_LIB_DIR ${SDL_DIR}/lib/windows)
-#else()
-#	set(SDL_LIB_DIR ${SDL_DIR}/lib/android/arm64-v8a)
-#endif()
+if(EF_PLATFORM_WINDOWS)
+	set(SDL_LIB_DIR ${SFML_DIR}/lib/windows)
+else()
+	set(SDL_LIB_DIR ${SFML_DIR}/lib/android/arm64-v8a)
+endif()
 
-set(SDL_LIB_DIR ${CMAKE_CURRENT_LIST_DIR}/src/main/jniLibs/${ANDROID_ABI})
+#set(SDL_LIB_DIR ${CMAKE_CURRENT_LIST_DIR}/src/main/jniLibs/${ANDROID_ABI})
 # GLAD
 
 message(WARNING ${SDL_LIB_DIR})
@@ -24,7 +24,7 @@ file(GLOB_RECURSE SOURCES
 	${GLAD_DIR}/src/glad.c
 )
 file(GLOB_RECURSE INCLUDE_DIRS
-    ${SDL_DIR}/include
+    ${SFML_DIR}/include
     ${GLAD_DIR}/include
 )
 # put generated files into the same directory as exe
@@ -39,7 +39,7 @@ add_library(ef SHARED ${SOURCES})
 
 target_include_directories(${PROJECT_NAME} PUBLIC
 	#${INCLUDE_DIRS}
-	${SDL_DIR}/include
+	${SFML_DIR}/include
     ${GLAD_DIR}/include
 )
 

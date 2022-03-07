@@ -1,0 +1,3 @@
+[submodule "ef/libs/efSFML"]
+	path = ef/libs/efSFML
+	url = https://github.com/dusanfpwn97/efSFML.git
